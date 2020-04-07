@@ -8,11 +8,18 @@ namespace PrefixTree
         {
             var trie = new Model.PrefixTree();
             
-            trie.Add("obama", 10);
-            trie.Add("obam", 12);
+            trie.Add("мама", 10);
+            trie.Add("машинка", 12);
+            trie.Add("машиностроение", 12);
+
+            var words = trie.GetAllWords("ма");
+            words.ForEach(Console.WriteLine);
             
-            Console.WriteLine(trie.Get("obama"));
-            Console.WriteLine(trie.Get("obam"));
+            words = trie.GetAllWords("па");
+            words.ForEach(Console.WriteLine);
+            
+            Console.WriteLine(trie.Get("мама"));
+            Console.WriteLine(trie.Get("машинка"));
         }
     }
 }
