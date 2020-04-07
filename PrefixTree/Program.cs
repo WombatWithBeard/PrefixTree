@@ -6,7 +6,13 @@ namespace PrefixTree
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var trie = new Model.PrefixTree();
+            
+            trie.Add("obama", 10);
+            trie.Add("obam", 12);
+            
+            Console.WriteLine(trie.Get("obama"));
+            Console.WriteLine(trie.Get("obam"));
         }
     }
 }
