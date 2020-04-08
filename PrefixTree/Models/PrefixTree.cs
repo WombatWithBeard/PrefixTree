@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using PrefixTree.Interfaces;
+using PrefixTree.Model;
 
-namespace PrefixTree.Model
+namespace PrefixTree.Models
 {
-    public class PrefixTree
+    public class PrefixTree : IPrefixTree
     {
         private readonly TreeNode _root = new TreeNode();
 

@@ -1,3 +1,4 @@
+using PrefixTree.Interfaces;
 using Xunit;
 
 namespace UnitTests
@@ -8,7 +9,7 @@ namespace UnitTests
         public void GivenValidResult()
         {
             //Arrange
-            var trie = new PrefixTree.Model.PrefixTree();
+            IPrefixTree trie = new PrefixTree.Models.PrefixTree();
             trie.Add("мама", 10);
             trie.Add("машинка", 12);
             trie.Add("машиностроение", 12);
@@ -31,7 +32,7 @@ namespace UnitTests
         public void GivenInvalidResult()
         {
             //Arrange
-            var trie = new PrefixTree.Model.PrefixTree();
+            IPrefixTree trie = new PrefixTree.Models.PrefixTree();
             trie.Add("мама", 10);
             trie.Add("машинка", 12);
             trie.Add("машиностроение", 12);
