@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PrefixTree.Model
+namespace PrefixTree.Models
 {
     public class TreeNode
     {

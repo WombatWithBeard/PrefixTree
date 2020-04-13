@@ -1,5 +1,6 @@
 ﻿using System;
 using PrefixTree.Interfaces;
+using PrefixTree.Models;
 
 namespace PrefixTree
 {
@@ -7,7 +8,7 @@ namespace PrefixTree
     {
         static void Main(string[] args)
         {
-            IPrefixTree trie = new Models.PrefixTree();
+            IPrefixTree trie = new PrefixTrie();
             
             trie.Add("мама", 10);
             trie.Add("машинка", 12);

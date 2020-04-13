@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using PrefixTree.Interfaces;
-using PrefixTree.Model;
 
 namespace PrefixTree.Models
 {
-    public class PrefixTree : IPrefixTree
+    public class PrefixTrie : IPrefixTree
     {
         private readonly TreeNode _root = new TreeNode();
 
@@ -19,7 +18,7 @@ namespace PrefixTree.Models
                 if (node == null) 
                     current.Childs.Add(new TreeNode {Key = c});
 
-                current = current.Childs.Find(t => t.Key == c);
+                current = node;
             }
 
             current.Value = value;
@@ -45,11 +44,9 @@ namespace PrefixTree.Models
 
             foreach (var c in key)
             {
-                if (current?.Childs.Find(t => t.Key == c) != null)
-                {
-                    wordBase += c;
-                }
-                current = current?.Childs.Find(t => t.Key == c);
+                var node = current?.Childs.Find(t => t.Key == c);
+                if (node != null) wordBase += c;
+                current = node;
             }
 
             if (current == null) return result;

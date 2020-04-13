@@ -9,7 +9,7 @@ namespace UnitTests
         public void GivenValidResult()
         {
             //Arrange
-            IPrefixTree trie = new PrefixTree.Models.PrefixTree();
+            IPrefixTree trie = new PrefixTree.Models.PrefixTrie();
             trie.Add("мама", 10);
             trie.Add("машинка", 12);
             trie.Add("машиностроение", 12);
@@ -32,7 +32,7 @@ namespace UnitTests
         public void GivenInvalidResult()
         {
             //Arrange
-            IPrefixTree trie = new PrefixTree.Models.PrefixTree();
+            IPrefixTree trie = new PrefixTree.Models.PrefixTrie();
             trie.Add("мама", 10);
             trie.Add("машинка", 12);
             trie.Add("машиностроение", 12);
