@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using System.Text;
 using PrefixTree.Interfaces;
 using PrefixTree.Models;
 using PrefixTree.Utilities;
@@ -21,13 +21,15 @@ namespace PrefixTree
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                Console.WriteLine(e.Message);
             }
         }
 
         private void GetCommands()
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
+            
             while (!_isQuit)
             {
                 var x = Console.ReadLine()?.ToLower();
@@ -62,12 +64,16 @@ namespace PrefixTree
 
         private void GetAllByIdFromPrefixTree(string s)
         {
+            if (string.IsNullOrEmpty(s)) return;
+            
             var words = _tree.GetAllWords(s);
             words.ForEach(Console.WriteLine);
         }
 
         private void GetByIdFromPrefixTree(string s)
         {
+            if (string.IsNullOrEmpty(s)) return;
+            
             Console.WriteLine(_tree.Get(s));
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using PrefixTree.Interfaces;
 
 namespace PrefixTree.Models
@@ -7,7 +8,7 @@ namespace PrefixTree.Models
     public class PrefixTrie : IPrefixTree
     {
         private readonly TreeNode _root = new TreeNode();
-
+        
         public void Add(string key, int value)
         {
             var current = _root;
