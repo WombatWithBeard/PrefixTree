@@ -14,14 +14,14 @@ namespace PrefixTree
         public void Start()
         {
             Info.GetHelpInfo();
-            
+
             try
             {
                 GetCommands();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Something goes wrong");
             }
         }
 
@@ -29,6 +29,8 @@ namespace PrefixTree
         {
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
+
+            Console.WriteLine("русский текст");
             
             while (!_isQuit)
             {
