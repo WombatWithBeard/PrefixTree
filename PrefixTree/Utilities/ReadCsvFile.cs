@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PrefixTree.Utilities
 {
@@ -16,24 +17,25 @@ namespace PrefixTree.Utilities
             {
                 var line = reader.ReadLine();
 
-                var row = line?.Split(',');
-
-                if (row != null) 
-                    list.Add((row[0].ToLower(), TryToConvert(row[1])));
+                if (string.IsNullOrEmpty(line)) continue;
+                
+                var row = line.Split(',');
+                
+                if (row.Length >= 1) 
+                    list.Add((row[0].ToLower(), TryToConvert(row)));
             }
 
             return list;
         }
 
-        private int TryToConvert(string s)
+        private int TryToConvert(string[] s)
         {
             try
             {
-                return string.IsNullOrEmpty(s) ? 0 : Convert.ToInt32(s);
+                return string.IsNullOrEmpty(s.Last()) && s.Length > 1 ? 0 : Convert.ToInt32(s.Last());
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message + $" from {s}");
                 return 0;
             }
         }

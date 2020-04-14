@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using PrefixTree.Interfaces;
 
@@ -13,12 +14,20 @@ namespace PrefixTree.Models
 
             foreach (char c in key)
             {
-                var node = current.Childs.Find(t => t.Key == c);
+                try
+                {
+                    var node = current.Childs.Find(t => t.Key == c);
                 
-                if (node == null) 
-                    current.Childs.Add(new TreeNode {Key = c});
+                    if (node == null) 
+                        current.Childs.Add(new TreeNode {Key = c});
 
-                current = node;
+                    current = current.Childs.Find(t => t.Key == c);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
 
             current.Value = value;
