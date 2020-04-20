@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using PrefixTree.Interfaces;
 
 namespace PrefixTree.Models
@@ -17,12 +16,12 @@ namespace PrefixTree.Models
             {
                 try
                 {
-                    var node = current.Childs.Find(t => t.Key == c);
-                
-                    if (node == null) 
-                        current.Childs.Add(new TreeNode {Key = c});
+                    if (!current.Childs.ContainsKey(c))
+                    {
+                        current.Childs.Add(c, new TreeNode {Key = c});
+                    }
 
-                    current = current.Childs.Find(t => t.Key == c);
+                    current = current.Childs[c];
                 }
                 catch (Exception e)
                 {
@@ -40,7 +39,7 @@ namespace PrefixTree.Models
 
             foreach (var c in key)
             {
-                current = current.Childs.Find(t => t.Key == c);
+                current = current.Childs[c];
             }
 
             return current.Value;
@@ -54,7 +53,10 @@ namespace PrefixTree.Models
 
             foreach (var c in key)
             {
-                var node = current?.Childs.Find(t => t.Key == c);
+                if (current == null) continue;
+                if (!current.Childs.ContainsKey(c)) return result;
+                
+                var node = current.Childs[c];
                 if (node != null) wordBase += c;
                 current = node;
             }
@@ -72,20 +74,20 @@ namespace PrefixTree.Models
             var result = new List<string>();
             var wordEnding = new List<string>();
 
-            foreach (var node in child.Childs)
+            foreach (var (key, value) in child.Childs)
             {
-                if (node?.Childs.Count != null)
+                if (value.Childs.Count > 0)
                 {
-                    wordEnding = GetWordEnding(node);
+                    wordEnding = GetWordEnding(value);
                 }
 
                 if (wordEnding.Count == 0)
                 {
-                    result.Add(node.Key.ToString());
+                    result.Add(key.ToString());
                 }
                 else
                 {
-                    wordEnding.ForEach(w => result.Add(node.Key + w));
+                    wordEnding.ForEach(w => result.Add(key + w));
                 }
             }
             

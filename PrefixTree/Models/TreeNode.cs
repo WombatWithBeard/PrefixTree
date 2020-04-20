@@ -6,13 +6,13 @@ namespace PrefixTree.Models
     {
         public TreeNode()
         {
-            Childs = new List<TreeNode>();
+            Childs = new Dictionary<char, TreeNode>();
         }
 
         public char Key { get; set; }
 
         public int Value { get; set; }
 
-        public List<TreeNode> Childs { get; }
+        public Dictionary<char, TreeNode> Childs { get; }
     }
 }
